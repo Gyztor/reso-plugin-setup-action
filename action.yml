@@ -1,24 +1,24 @@
-name: Setup Neos Plugin Build Environment
-description: Install .NET and Neos
+name: Setup Reso Plugin Build Environment
+description: Install .NET and Reso
 runs:
   using: "composite"
   steps:
-    - name: get latest Neos version
+    - name: get latest Reso version
       run: |
-        REMOTE_NEOS_VERSION="$(curl -fs https://cloudxstorage.blob.core.windows.net/install/Pro/Public)"
-        echo "Remote Neos version is: \"$REMOTE_NEOS_VERSION\""
-        if [ "$REMOTE_NEOS_VERSION" = "" ]; then
-          echo "REMOTE_NEOS_VERSION is empty"
+        REMOTE_RESO_VERSION="$(curl -fs https://cloudxstorage.blob.core.windows.net/install/Pro/Public)"
+        echo "Remote Neos version is: \"$REMOTE_RESO_VERSION\""
+        if [ "$REMOTE_RESO_VERSION" = "" ]; then
+          echo "REMOTE_RESO_VERSION is empty"
           exit 1
         fi
-        echo "REMOTE_NEOS_VERSION=$REMOTE_NEOS_VERSION" >> $GITHUB_ENV
+        echo "REMOTE_RESO_VERSION=$REMOTE_RESO_VERSION" >> $GITHUB_ENV
       shell: bash
-    - name: setup Neos install cache
+    - name: setup Reso install cache
       id: cache
       uses: actions/cache@v3
       with:
-        path: neos_install/
-        key: neos_install_${{ env.REMOTE_NEOS_VERSION }}
+        path: reso_install/
+        key: reso_install_${{ env.REMOTE_RESO_VERSION }}
     - name: setup .NET
       uses: actions/setup-dotnet@v3
       with:
